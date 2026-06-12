@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Documentation — {{ config.title }}{% endblock %}
+{% block content %}
+<section class="docs">
+  <aside>
+    {% for page in section.pages %}
+    <a href="{{ page.permalink }}">{{ page.title }}</a>
+    {% endfor %}
+  </aside>
+  <main>
+    <h1>{{ section.title }}</h1>
+    {{ section.content | safe }}
+    <ul>
+      {% for page in section.pages %}
+      <li><a href="{{ page.permalink }}">{{ page.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </main>
+</section>
+{% endblock %}

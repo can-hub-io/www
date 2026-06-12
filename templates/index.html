@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <h1>Your CAN buses. Anywhere.</h1>
+  <p class="lead">can-hub puts the CAN interfaces of vehicles and machines on the
+  network — through NAT, encrypted, authenticated — so the people and tools that
+  need them can reach them from anywhere.</p>
+  <div class="cta">
+    <a class="btn primary" href="{{ get_url(path='@/docs/getting-started.md') }}">Get started</a>
+    <a class="btn" href="{{ config.extra.github }}">GitHub</a>
+  </div>
+
+  <svg class="diagram" viewBox="0 0 920 340" role="img"
+       aria-label="Devices behind NAT connect outward to a central hub; clients anywhere reach their CAN buses through it">
+    <defs>
+      <path id="flow-a1" d="M 218 110 C 320 110 360 150 442 162"/>
+      <path id="flow-a2" d="M 218 236 C 320 236 360 192 442 178"/>
+      <path id="flow-c1" d="M 478 162 C 560 150 600 110 702 110"/>
+      <path id="flow-c2" d="M 478 178 C 560 192 600 236 702 236"/>
+    </defs>
+
+    <!-- NAT wall -->
+    <line x1="280" y1="40" x2="280" y2="300" stroke="#2a3140" stroke-width="2" stroke-dasharray="6 8"/>
+    <text x="280" y="26" text-anchor="middle" class="svg-muted">NAT / firewall</text>
+
+    <!-- agents -->
+    <g class="node">
+      <rect x="60" y="72" width="158" height="76" rx="10"/>
+      <text x="139" y="100" text-anchor="middle" class="svg-title">truck42</text>
+      <rect x="78" y="112" width="56" height="22" rx="5" class="chip"/>
+      <text x="106" y="127" text-anchor="middle" class="svg-chip">can0</text>
+      <rect x="144" y="112" width="56" height="22" rx="5" class="chip"/>
+      <text x="172" y="127" text-anchor="middle" class="svg-chip">can1</text>
+    </g>
+    <g class="node">
+      <rect x="60" y="198" width="158" height="76" rx="10"/>
+      <text x="139" y="226" text-anchor="middle" class="svg-title">rack-07</text>
+      <rect x="111" y="238" width="56" height="22" rx="5" class="chip"/>
+      <text x="139" y="253" text-anchor="middle" class="svg-chip">can0</text>
+    </g>
+    <text x="139" y="305" text-anchor="middle" class="svg-muted">agents dial out</text>
+
+    <!-- hub -->
+    <g class="node hub">
+      <rect x="400" y="120" width="120" height="100" rx="12"/>
+      <text x="460" y="150" text-anchor="middle" class="svg-title">can-hub</text>
+      <line x1="418" y1="168" x2="502" y2="168" class="cat"/>
+      <line x1="418" y1="184" x2="502" y2="184" class="cat"/>
+      <line x1="418" y1="200" x2="488" y2="200" class="cat"/>
+    </g>
+    <text x="460" y="245" text-anchor="middle" class="svg-muted">catalogue · identity · ACLs</text>
+
+    <!-- clients -->
+    <g class="node">
+      <rect x="702" y="72" width="158" height="76" rx="10"/>
+      <text x="781" y="102" text-anchor="middle" class="svg-title">engineer</text>
+      <text x="781" y="126" text-anchor="middle" class="svg-muted">live dump · send</text>
+    </g>
+    <g class="node">
+      <rect x="702" y="198" width="158" height="76" rx="10"/>
+      <text x="781" y="228" text-anchor="middle" class="svg-title">tools &amp; CI</text>
+      <text x="781" y="252" text-anchor="middle" class="svg-muted">mirrored local bus</text>
+    </g>
+    <text x="781" y="305" text-anchor="middle" class="svg-muted">clients, anywhere</text>
+
+    <!-- links -->
+    <use href="#flow-a1" class="wire"/>
+    <use href="#flow-a2" class="wire"/>
+    <use href="#flow-c1" class="wire"/>
+    <use href="#flow-c2" class="wire"/>
+
+    <!-- frames in flight -->
+    <circle r="4" class="dot up"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#flow-a1"/></animateMotion></circle>
+    <circle r="4" class="dot up"><animateMotion dur="2.4s" begin="0.9s" repeatCount="indefinite"><mpath href="#flow-a2"/></animateMotion></circle>
+    <circle r="4" class="dot up"><animateMotion dur="2.4s" begin="0.4s" repeatCount="indefinite"><mpath href="#flow-c1"/></animateMotion></circle>
+    <circle r="4" class="dot down"><animateMotion dur="2.4s" begin="1.3s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1"><mpath href="#flow-c2"/></animateMotion></circle>
+    <circle r="4" class="dot down"><animateMotion dur="2.4s" begin="1.7s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1"><mpath href="#flow-a1"/></animateMotion></circle>
+  </svg>
+</section>
+
+<section class="steps">
+  <h2>How it works</h2>
+  <div class="grid3">
+    <div class="card">
+      <span class="num">1</span>
+      <h3>The device dials out</h3>
+      <p>An agent next to the bus opens one outbound, encrypted connection to
+      your hub. No public IP, no port forwarding, no VPN appliance.</p>
+    </div>
+    <div class="card">
+      <span class="num">2</span>
+      <h3>The hub keeps the catalogue</h3>
+      <p>Every interface gets a stable name — <em>truck42/can0</em>. Devices are
+      identified by their TLS fingerprint, pinned on first contact. Impostors
+      are rejected, not just logged.</p>
+    </div>
+    <div class="card">
+      <span class="num">3</span>
+      <h3>Open it from anywhere</h3>
+      <p>Stream a bus live, inject frames if you are allowed to, or mirror it
+      into your own machine. Per-interface read/write permissions, enforced at
+      the hub.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cases">
+  <h2>What people do with it</h2>
+  <div class="grid2">
+
+    <div class="card">
+      <svg viewBox="0 0 280 90" aria-hidden="true">
+        <rect x="10" y="30" width="70" height="34" rx="7" class="mini"/>
+        <text x="45" y="51" text-anchor="middle" class="svg-chip">fleet</text>
+        <path d="M 92 47 q 12 -10 0 -20 M 100 52 q 22 -18 0 -36 M 108 57 q 32 -26 0 -52" class="waves"/>
+        <path d="M 122 47 H 196" class="wire"/>
+        <rect x="200" y="30" width="70" height="34" rx="7" class="mini"/>
+        <text x="235" y="51" text-anchor="middle" class="svg-chip">bench</text>
+        <circle r="3.5" class="dot up"><animateMotion dur="1.8s" repeatCount="indefinite" path="M 122 47 H 196"/></circle>
+      </svg>
+      <h3>Fleet diagnostics</h3>
+      <p>A truck on cellular, an engineer at the bench. Watch any bus in the
+      fleet live and answer “what is that ECU doing?” without rolling a van.</p>
+    </div>
+
+    <div class="card">
+      <svg viewBox="0 0 280 90" aria-hidden="true">
+        <text x="10" y="22" class="svg-muted small">over the WAN, per exchange</text>
+        <path d="M 10 36 l 18 0 l 6 -8 l 6 8 l 18 0 l 6 -8 l 6 8 l 18 0 l 6 -8 l 6 8 l 18 0 l 6 -8 l 6 8 l 18 0" class="slowline"/>
+        <text x="10" y="64" class="svg-muted small">executed at the bus</text>
+        <rect x="10" y="70" width="0" height="8" rx="3" class="fastbar">
+          <animate attributeName="width" values="0;150;150;0" keyTimes="0;0.45;0.9;1" dur="3.5s" repeatCount="indefinite"/>
+        </rect>
+      </svg>
+      <h3>Remote operations &amp; upgrades <span class="badge">in development</span></h3>
+      <p>Request/response sequences run next to the bus, not across the WAN:
+      the agent executes buffered steps at bus speed while your link only
+      refills the buffer. Hours of round trips become minutes.</p>
+    </div>
+
+    <div class="card">
+      <svg viewBox="0 0 280 90" aria-hidden="true">
+        <rect x="10" y="30" width="80" height="34" rx="7" class="mini"/>
+        <text x="50" y="51" text-anchor="middle" class="svg-chip">remote bus</text>
+        <path d="M 98 47 H 172" class="wire"/>
+        <rect x="178" y="20" width="92" height="54" rx="7" class="mini"/>
+        <text x="224" y="40" text-anchor="middle" class="svg-chip">your machine</text>
+        <rect x="196" y="48" width="56" height="18" rx="4" class="chip"/>
+        <text x="224" y="61" text-anchor="middle" class="svg-chip">vcan0</text>
+        <circle r="3.5" class="dot up"><animateMotion dur="1.8s" repeatCount="indefinite" path="M 98 47 H 172"/></circle>
+        <circle r="3.5" class="dot down"><animateMotion dur="1.8s" begin="0.9s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" path="M 98 47 H 172"/></circle>
+      </svg>
+      <h3>Your tools, unmodified</h3>
+      <p>Mirror a remote bus into a local virtual interface and keep using
+      candump, SavvyCAN, Wireshark or python-can as if the bus were plugged
+      into your machine.</p>
+    </div>
+
+    <div class="card">
+      <svg viewBox="0 0 280 90" aria-hidden="true">
+        <rect x="10" y="30" width="96" height="34" rx="7" class="mini"/>
+        <text x="58" y="51" text-anchor="middle" class="svg-chip">socketcand app</text>
+        <path d="M 114 47 H 160" class="wire"/>
+        <rect x="164" y="30" width="106" height="34" rx="7" class="mini"/>
+        <text x="217" y="51" text-anchor="middle" class="svg-chip">local bridge → hub</text>
+      </svg>
+      <h3>Drop-in for legacy setups</h3>
+      <p>Existing socketcand clients connect to a local bridge and reach hub
+      interfaces — the same protocol they already speak, now with
+      authentication and permissions in front.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="security">
+  <h2>Secure by default, not by configuration</h2>
+  <div class="grid4">
+    <div><h4>Zero-config identity</h4><p>Keys generated on first start. The TLS fingerprint is the device identity.</p></div>
+    <div><h4>Pinned on first use</h4><p>Hub and devices pin each other. A changed fingerprint is a rejected connection.</p></div>
+    <div><h4>Mutual TLS</h4><p>Client certificates required on every encrypted transport.</p></div>
+    <div><h4>Per-interface ACLs</h4><p>Read and write granted per client and per bus, enforced at the hub.</p></div>
+  </div>
+</section>
+
+<section class="license">
+  <h2>Open source, with a commercial path</h2>
+  <p>can-hub is AGPL-3.0 — free for any use that shares its changes. Shipping it
+  inside a proprietary product or service? <a href="mailto:{{ config.extra.contact }}">Talk to us about a commercial license.</a></p>
+</section>
+
+{% endblock %}

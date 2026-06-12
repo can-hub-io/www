@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }} — {{ config.title }}{% endblock %}
+{% block content %}
+{% set section = get_section(path="docs/_index.md") %}
+<section class="docs">
+  <aside>
+    {% for p in section.pages %}
+    <a href="{{ p.permalink }}" {% if p.permalink == page.permalink %}class="active"{% endif %}>{{ p.title }}</a>
+    {% endfor %}
+  </aside>
+  <main>
+    {{ page.content | safe }}
+  </main>
+</section>
+{% endblock %}

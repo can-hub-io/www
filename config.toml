@@ -1,0 +1,14 @@
+base_url = "https://can-hub.io"
+title = "can-hub"
+description = "CAN bus over the network, done right. Reach the buses of vehicles and machines behind NAT — encrypted, authenticated, live."
+compile_sass = false
+build_search_index = false
+generate_feeds = false
+
+[markdown]
+highlight_code = true
+highlight_theme = "ayu-dark"
+
+[extra]
+github = "https://github.com/jamofer/can-hub"
+contact = "licensing@can-hub.io"
