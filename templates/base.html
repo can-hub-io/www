@@ -8,31 +8,6 @@
 <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
 </head>
 <body>
-<nav class="top">
-  <a class="brand" href="{{ config.base_url }}">can<span>-</span>hub</a>
-  <div class="links">
-    <a href="{{ get_url(path='@/docs/_index.md') }}">Docs</a>
-    <a href="{{ config.extra.github }}">GitHub</a>
-  </div>
-</nav>
 {% block content %}{% endblock %}
-<footer>
-  <div class="cols">
-    <div>
-      <strong>can-hub</strong>
-      <p>CAN bus over the network, done right.</p>
-    </div>
-    <div>
-      <a href="{{ config.extra.github }}">Source on GitHub</a>
-      <a href="{{ get_url(path='@/docs/_index.md') }}">Documentation</a>
-      <a href="{{ config.extra.github }}/blob/main/doc/protocol.md">Protocol spec (CC-BY-4.0)</a>
-    </div>
-    <div>
-      <a href="{{ config.extra.github }}/blob/main/LICENSE">AGPL-3.0</a>
-      <a href="mailto:{{ config.extra.contact }}">Commercial licensing</a>
-    </div>
-  </div>
-  <p class="fine">© 2026 Javier Moragón. Site content CC-BY-4.0.</p>
-</footer>
 </body>
 </html>
