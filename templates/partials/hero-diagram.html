@@ -1,0 +1,55 @@
+<svg class="diagram" viewBox="0 0 560 250" role="img" aria-label="Devices behind NAT export their CAN interfaces to the central can-hub; clients consume them from anywhere.">
+  <!-- wires -->
+  <g class="wire">
+    <path d="M150 122.5 H232.4"/>
+    <path d="M150 177.5 H232.4"/>
+    <path d="M327.6 122.5 H410"/>
+    <path d="M327.6 177.5 H410"/>
+  </g>
+
+  <!-- device chips (agents) -->
+  <g font-family="-apple-system,Segoe UI,Roboto,sans-serif">
+    <g>
+      <rect x="18" y="100" width="132" height="45" rx="11" fill="#eef6f1" stroke="#bfe0cd" stroke-width="1.5"/>
+      <circle cx="36" cy="122.5" r="4" fill="#0b6e3a"/>
+      <text x="50" y="118" class="lbl" style="fill:#14201a;font-weight:700;font-size:13px">truck42</text>
+      <text x="50" y="133" class="lbl" style="font-size:10px">can0 · can1</text>
+    </g>
+    <g>
+      <rect x="18" y="155" width="132" height="45" rx="11" fill="#eef6f1" stroke="#bfe0cd" stroke-width="1.5"/>
+      <circle cx="36" cy="177.5" r="4" fill="#0b6e3a"/>
+      <text x="50" y="173" class="lbl" style="fill:#14201a;font-weight:700;font-size:13px">press7</text>
+      <text x="50" y="188" class="lbl" style="font-size:10px">can0</text>
+    </g>
+  </g>
+
+  <!-- client chips -->
+  <g font-family="-apple-system,Segoe UI,Roboto,sans-serif">
+    <g>
+      <rect x="410" y="100" width="132" height="45" rx="11" fill="#ffffff" stroke="#cfe0d6" stroke-width="1.5"/>
+      <circle cx="428" cy="122.5" r="4" fill="none" stroke="#0f9d8f" stroke-width="2"/>
+      <text x="442" y="118" class="lbl" style="fill:#14201a;font-weight:700;font-size:13px">candump</text>
+      <text x="442" y="133" class="lbl" style="font-size:10px">live dump</text>
+    </g>
+    <g>
+      <rect x="410" y="155" width="132" height="45" rx="11" fill="#ffffff" stroke="#cfe0d6" stroke-width="1.5"/>
+      <circle cx="428" cy="177.5" r="4" fill="none" stroke="#0f9d8f" stroke-width="2"/>
+      <text x="442" y="173" class="lbl" style="fill:#14201a;font-weight:700;font-size:13px">SavvyCAN</text>
+      <text x="442" y="188" class="lbl" style="font-size:10px">socketcand</text>
+    </g>
+  </g>
+
+  <!-- the hub -->
+  <polygon points="280,95 327.6,122.5 327.6,177.5 280,205 232.4,177.5 232.4,122.5" fill="#ffffff" stroke="#0b6e3a" stroke-width="5" stroke-linejoin="round"/>
+  <polygon points="280,123.4 307.6,139.3 307.6,160.7 280,176.6 252.4,160.7 252.4,139.3" fill="#0b6e3a"/>
+  <circle cx="280" cy="150" r="4.4" fill="#ffffff"/>
+  <text x="280" y="226" text-anchor="middle" class="lbl" style="font-weight:700;fill:#0b6e3a">the hub</text>
+
+  <!-- animated CAN frames (outer g = position, inner g = animated translateX) -->
+  <g font-family="ui-monospace,Menlo,monospace">
+    <g transform="translate(150,122.5)"><g class="pkt"   style="--d:82px"><rect x="0" y="-9" width="32" height="18" rx="5" fill="#0b6e3a"/><text x="16" y="4" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">0C9</text></g></g>
+    <g transform="translate(150,177.5)"><g class="pkt b" style="--d:82px"><rect x="0" y="-9" width="32" height="18" rx="5" fill="#0b6e3a"/><text x="16" y="4" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">1A3</text></g></g>
+    <g transform="translate(327.6,122.5)"><g class="pkt c" style="--d:82px"><rect x="0" y="-9" width="32" height="18" rx="5" fill="#0f9d8f"/><text x="16" y="4" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">2F0</text></g></g>
+    <g transform="translate(327.6,177.5)"><g class="pkt d" style="--d:82px"><rect x="0" y="-9" width="32" height="18" rx="5" fill="#0f9d8f"/><text x="16" y="4" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">18E</text></g></g>
+  </g>
+</svg>

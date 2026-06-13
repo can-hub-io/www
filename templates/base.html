@@ -3,11 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% block title %}{{ config.title }} — CAN bus over the network{% endblock %}</title>
-<meta name="description" content="{{ config.description }}">
+{%- if page %}{% set p_title = page.title ~ " — " ~ config.title %}{% set p_desc = page.description | default(value=config.description) %}
+{%- elif section and section.title and current_path != "/" %}{% set p_title = section.title ~ " — " ~ config.title %}{% set p_desc = section.description | default(value=config.description) %}
+{%- else %}{% set p_title = config.title ~ " — CAN bus over the network, done right" %}{% set p_desc = config.description %}{% endif -%}
+{%- set p_url = current_url | default(value=config.base_url) -%}
+<title>{% block title %}{{ p_title }}{% endblock %}</title>
+<meta name="description" content="{{ p_desc }}">
+<link rel="canonical" href="{{ p_url }}">
+<meta name="theme-color" content="#0b6e3a">
+<link rel="icon" href="{{ get_url(path='favicon.svg') }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ get_url(path='logo.svg') }}">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="can-hub">
+<meta property="og:title" content="{{ p_title }}">
+<meta property="og:description" content="{{ p_desc }}">
+<meta property="og:url" content="{{ p_url }}">
+<meta property="og:image" content="{{ get_url(path='og.svg') }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ p_title }}">
+<meta name="twitter:description" content="{{ p_desc }}">
+<meta name="twitter:image" content="{{ get_url(path='og.svg') }}">
+
 <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
+{% block head_extra %}{% endblock %}
 </head>
 <body>
+{% include "partials/nav.html" %}
 {% block content %}{% endblock %}
+{% block footer %}{% include "partials/footer.html" %}{% endblock %}
 </body>
 </html>

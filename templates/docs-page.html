@@ -1,8 +1,12 @@
 {% extends "base.html" %}
-{% block title %}{{ page.title }} — {{ config.title }}{% endblock %}
 {% block content %}
-<main>
-<p><a href="/docs/">← docs</a></p>
-{{ page.content | safe }}
-</main>
+<div class="doc-layout wrap">
+  {% include "partials/doc-sidebar.html" %}
+  <main class="doc-main">
+    <div class="breadcrumb"><a href="{{ get_url(path='/') }}">Home</a> / <a href="{{ get_url(path='/docs/') }}">Docs</a> / {{ page.title }}</div>
+    <article class="prose">
+      {{ page.content | safe }}
+    </article>
+  </main>
+</div>
 {% endblock %}

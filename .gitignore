@@ -1,4 +1,7 @@
 public/
 /zola
-content/docs/protocol.md
-content/docs/design.md
+
+# Docs are pulled from the code repo at build time (see build.sh); keep only _index.md.
+content/docs/*.md
+!content/docs/_index.md
+static/openapi.yaml

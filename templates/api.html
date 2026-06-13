@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="api-bar">
+  <div class="wrap">
+    <div class="breadcrumb" style="margin:0"><a href="{{ get_url(path='/') }}">Home</a> / API reference</div>
+  </div>
+</div>
+<iframe class="api-frame" src="{{ get_url(path='api-embed.html') }}" title="can-hub-web REST API reference" loading="lazy"></iframe>
+{% endblock %}
+{% block footer %}{% endblock %}

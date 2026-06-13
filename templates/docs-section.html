@@ -1,14 +1,18 @@
 {% extends "base.html" %}
-{% block title %}Documentation — {{ config.title }}{% endblock %}
 {% block content %}
-<main>
-<p><a href="/">← can-hub</a></p>
-<h1>{{ section.title }}</h1>
-{{ section.content | safe }}
-<ul>
-  {% for page in section.pages %}
-  <li><a href="{{ page.permalink }}">{{ page.title }}</a></li>
-  {% endfor %}
-</ul>
-</main>
+<div class="doc-layout wrap">
+  {% include "partials/doc-sidebar.html" %}
+  <main class="doc-main">
+    <div class="breadcrumb"><a href="{{ get_url(path='/') }}">Home</a> / Docs</div>
+    <article class="prose">
+      <h1>{{ section.title }}</h1>
+      {{ section.content | safe }}
+    </article>
+    <div class="doc-cards">
+      {% for p in section.pages %}
+      <a href="{{ p.permalink }}"><strong>{{ p.title }}</strong>{% if p.description %}<span>{{ p.description }}</span>{% endif %}</a>
+      {% endfor %}
+    </div>
+  </main>
+</div>
 {% endblock %}
