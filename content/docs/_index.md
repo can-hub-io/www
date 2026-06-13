@@ -8,5 +8,5 @@ sort_by = "weight"
 
 Everything here — quick start, tool reference, security, the wire protocol and
 the design notes — is rendered straight from the
-[can-hub repository](https://github.com/jamofer/can-hub) at build time. The
+[can-hub repository](https://github.com/can-hub-io/can-hub) at build time. The
 repository is the source of truth; edit the docs there.

@@ -10,5 +10,5 @@ highlight_code = true
 highlight_theme = "ayu-dark"
 
 [extra]
-github = "https://github.com/jamofer/can-hub"
+github = "https://github.com/can-hub-io/can-hub"
 contact = "licensing@can-hub.io"
