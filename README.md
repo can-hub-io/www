@@ -1,6 +1,6 @@
 # can-hub.io
 
-Marketing + docs site for [can-hub](https://github.com/jamofer/can-hub), built
+Marketing + docs site for [can-hub](https://github.com/can-hub-io/can-hub), built
 with [Zola](https://www.getzola.org) and deployed on Cloudflare Pages.
 
 ```sh
@@ -13,7 +13,7 @@ with [Zola](https://www.getzola.org) and deployed on Cloudflare Pages.
 - **Landing** lives in `templates/index.html` (+ `templates/partials/`); copy is
   in the template, not markdown.
 - **Docs** under `/docs/` are pulled from the [can-hub
-  repo](https://github.com/jamofer/can-hub) at build time by `build.sh`
+  repo](https://github.com/can-hub-io/can-hub) at build time by `build.sh`
   (quick-start, installation, security, the five tool references, protocol and
   design). Edit them **there**, never here — the fetched files are gitignored.
 - **API reference** at `/api/` renders `web/openapi.yaml` (also fetched at build)

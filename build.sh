@@ -4,7 +4,7 @@
 set -eu
 
 ZOLA_VERSION=0.19.2
-CODE_RAW=https://raw.githubusercontent.com/jamofer/can-hub/main
+CODE_RAW=https://raw.githubusercontent.com/can-hub-io/can-hub/main
 
 if [ ! -x ./zola ] || ! ./zola --version | grep -q "$ZOLA_VERSION"; then
     curl -sfL "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" | tar xz
@@ -23,7 +23,7 @@ fetch_doc() {
     } > "content/docs/$out"
     curl -sf "$CODE_RAW/$repo_path" \
         | sed 's#](\([a-z][a-z0-9-]*\)\.md#](/docs/\1/#g' \
-        | sed 's#](/docs/design/#](https://github.com/jamofer/can-hub/blob/main/doc/design.md#g' \
+        | sed 's#](/docs/design/#](https://github.com/can-hub-io/can-hub/blob/main/doc/design.md#g' \
         >> "content/docs/$out"
 }
 
