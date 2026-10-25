@@ -1,6 +1,7 @@
 {% set docs = get_section(path="docs/_index.md") %}
-{% set guides = ["quick-start", "installation", "security"] %}
+{% set guides = ["quick-start", "installation", "security", "transaction-scripts"] %}
 {% set tools = ["hub", "agent", "client", "cli", "web"] %}
+{% set libraries = ["libcanhub", "python"] %}
 {% set internals = ["protocol"] %}
 <aside class="doc-sidebar">
   <a class="back" href="{{ get_url(path='/') }}">← Back home</a>
@@ -10,6 +11,10 @@
   {%- endif %}{% endfor %}{% endfor %}
   <h4>Tool reference</h4>
   {% for slug in tools %}{% for p in docs.pages %}{% if p.slug == slug %}
+  <a href="{{ p.permalink }}"{% if p.path == current_path %} class="active"{% endif %}>{{ p.title }}</a>
+  {%- endif %}{% endfor %}{% endfor %}
+  <h4>Libraries</h4>
+  {% for slug in libraries %}{% for p in docs.pages %}{% if p.slug == slug %}
   <a href="{{ p.permalink }}"{% if p.path == current_path %} class="active"{% endif %}>{{ p.title }}</a>
   {%- endif %}{% endfor %}{% endfor %}
   <h4>Internals</h4>
