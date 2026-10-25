@@ -64,6 +64,16 @@
         <h3>Your tools, unmodified</h3>
         <p>Mirror a remote bus into a local <code>vcan</code> for <code>candump</code> and Wireshark, or keep using socketcand clients through the bridge.</p>
       </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h11M11 3l4 4-4 4"/><path d="M20 17H9M13 13l-4 4 4 4"/></svg></div>
+        <h3>Round trips at the bus</h3>
+        <p>Flashing and diagnostic sequences run at the agent, step by step against the real bus, so a request waits for its answer without crossing the network. One script works from the CLI, C or Python.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></div>
+        <h3>From your own code</h3>
+        <p>libcanhub embeds the whole client in C programs on Linux and Windows; python-can-hub plugs it into python-can as a native backend.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -72,7 +82,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="kicker">The pieces</p>
-      <h2>Five small binaries, one fleet.</h2>
+      <h2>Five small binaries, two libraries, one fleet.</h2>
     </div>
     <div class="pieces">
       <a class="piece" href="{{ get_url(path='/docs/hub/') }}"><code>can-hub</code> <span class="arrow">→</span><p>The hub: registry, frame relay, admin plane.</p></a>
@@ -81,6 +91,9 @@
       <a class="piece" href="{{ get_url(path='/docs/cli/') }}"><code>can-hub-cli</code> <span class="arrow">→</span><p>Hub administration over the local unix socket.</p></a>
       <a class="piece" href="{{ get_url(path='/docs/web/') }}"><code>can-hub-web</code> <span class="arrow">→</span><p>Web admin panel: REST API + live telemetry.</p></a>
       <a class="piece" href="{{ get_url(path='/api/') }}"><code>REST API</code> <span class="arrow">→</span><p>The contract behind the panel — browse it live.</p></a>
+      <a class="piece" href="{{ get_url(path='/docs/libcanhub/') }}"><code>libcanhub</code> <span class="arrow">→</span><p>Embeddable C client library, Linux and Windows.</p></a>
+      <a class="piece" href="{{ get_url(path='/docs/python/') }}"><code>python-can-hub</code> <span class="arrow">→</span><p>Native python-can backend, on PyPI.</p></a>
+      <a class="piece" href="{{ get_url(path='/docs/transaction-scripts/') }}"><code>transaction scripts</code> <span class="arrow">→</span><p>Request/response sequences the agent runs at the bus.</p></a>
     </div>
   </div>
 </section>
